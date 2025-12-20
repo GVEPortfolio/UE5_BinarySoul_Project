@@ -1,0 +1,14 @@
+{
+    "Version": "1.2",
+    "Data": {
+        "Source": "d:\\unrealproject\\ue5_binarysoul_project\\binarysoul\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\binarysoul\\permoduleinline.gen.cpp",
+        "ProvidedModule": "",
+        "PCH": "d:\\unrealproject\\ue5_binarysoul_project\\binarysoul\\intermediate\\build\\win64\\x64\\binarysouleditor\\development\\unrealed\\sharedpch.unrealed.project.valapi.valexpapi.cpp20.h.pch",
+        "Includes": [
+            "d:\\unrealproject\\ue5_binarysoul_project\\binarysoul\\intermediate\\build\\win64\\x64\\unrealeditor\\development\\binarysoul\\definitions.binarysoul.h",
+            "d:\\unreal\\ue_5.7\\engine\\source\\runtime\\core\\public\\hal\\permoduleinline.inl"
+        ],
+        "ImportedModules": [],
+        "ImportedHeaderUnits": []
+    }
+}
