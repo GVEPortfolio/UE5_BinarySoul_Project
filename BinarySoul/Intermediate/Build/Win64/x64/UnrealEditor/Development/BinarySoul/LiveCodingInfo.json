@@ -2,6 +2,8 @@
 	"RemapUnityFiles": 
 	{
 		"Module.BinarySoul.gen.cpp.obj": [
+			"ABinaryCharacter.gen.cpp.obj",
+			"ABinaryChoiceButton.gen.cpp.obj",
 			"BinaryGameInstance.gen.cpp.obj",
 			"BinarySoul.init.gen.cpp.obj",
 			"BinarySoulTypes.gen.cpp.obj"
