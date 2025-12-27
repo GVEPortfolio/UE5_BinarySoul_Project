@@ -26,7 +26,14 @@ protected:
 	virtual void Tick(float DeltaTime) override;
 	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Stats")
+	float MaxHealth;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Stats")
+	float CurrentHealth;
+	
+	bool bIsDead = false;
 public:	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly,Category="Camera")
 	USpringArmComponent* CameraBoom;
@@ -45,6 +52,15 @@ public:
 	
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Input")
 	UInputAction* InteractAction;
+	
+	UFUNCTION(BlueprintCallable, Category="Stats")
+	void UpdateHealth(float Amount);
+	
+	UFUNCTION(BlueprintCallable, Category="Stats")
+	void UpdateMaxHealth(float Amount);
+	
+	UFUNCTION(BlueprintImplementableEvent, Category="GameLogic")
+	void OnDeath();
 
 protected:
 	void Move(const FInputActionValue& Value);

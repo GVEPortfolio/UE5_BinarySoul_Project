@@ -26,6 +26,8 @@ AABinaryCharacter::AABinaryCharacter()
 	
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	MaxHealth = 100.0f;
+	CurrentHealth = MaxHealth;
 }
 
 void AABinaryCharacter::BeginPlay()
@@ -96,7 +98,7 @@ void AABinaryCharacter::Interact()
 	// Unity의 Physics.Raycast와 대응되는 LineTrace
 	FVector Start = FollowCamera->GetComponentLocation();
 	FVector Forward = FollowCamera->GetForwardVector();
-	FVector End = Start + (Forward * 800.0f); // 5미터 앞까지 검사
+	FVector End = Start + (Forward * 800.0f);
 	FHitResult HitResult;
 	FCollisionQueryParams Params;
 	Params.AddIgnoredActor(this); // 나는 무시
@@ -113,7 +115,7 @@ void AABinaryCharacter::Interact()
 			ABinaryChoiceButton* Button = Cast<ABinaryChoiceButton>(HitActor);
 			if (Button)
 			{
-				Button->OnInteracted();
+				Button->OnInteracted(this);
 				
 				// 디버그용 구체 그리기 (Unity의 Gizmos.DrawWireSphere)
 				// #include "DrawDebugHelpers.h" 필요
@@ -122,9 +124,44 @@ void AABinaryCharacter::Interact()
 		}
 	}
 }
+void AABinaryCharacter::UpdateHealth(float HealthAmount)
+{
+	if (bIsDead) return;
+	
+	CurrentHealth -= HealthAmount;
+	CurrentHealth = FMath::Clamp(CurrentHealth, 0.0f, MaxHealth);
+	
+	// 디버그 로그 출력 (화면 왼쪽 상단에 빨간 글씨)
+	if (GEngine)
+	{
+		FString DebugMsg = FString::Printf(TEXT("Health Changed: %.1f / %.1f (Amount: %.1f)"), CurrentHealth, MaxHealth, HealthAmount);
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, DebugMsg);
+	}
+	if (CurrentHealth <= 0.0f)
+	{
+		bIsDead=false;
+		if (APlayerController* PC = Cast<APlayerController>(Controller))
+		{
+			DisableInput(PC);
+		}
+		OnDeath();
+	}
+}
+
+void AABinaryCharacter::UpdateMaxHealth(float Amount)
+{
+	MaxHealth += Amount;
+	if (Amount > MaxHealth)
+	{
+		UpdateHealth(-Amount);
+	}
+	else
+	{
+		CurrentHealth = FMath::Clamp(CurrentHealth, 0.0f, MaxHealth);
+	}
+}
 
 void AABinaryCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-
