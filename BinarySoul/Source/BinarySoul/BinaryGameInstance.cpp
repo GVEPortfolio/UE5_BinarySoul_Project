@@ -1,33 +1,48 @@
 
 #include "BinaryGameInstance.h"
 #include "BinarySoulTypes.h"
+#include "Kismet/GameplayStatics.h"
+#include "ABinaryCharacter.h"
 UBinaryGameInstance::UBinaryGameInstance()
 {
 	LED_Array.Init(EFactionColor::None, 10);
+	CurrentStageIndex = 0;
 }
 void UBinaryGameInstance::ProcessChoice(FChoiceData SelectedData)
 {
-	// 1. 선택한 진영 데이터를 GameInstance에 저장 [cite: 47]
+	if (!LED_Array.IsValidIndex(CurrentStageIndex)) return;
+
 	CurrentFaction = SelectedData.FactionType;
+	UpdateLED(CurrentFaction);
+	SaveStatsFromCharacter();
+	UE_LOG(LogTemp, Warning, TEXT("Stage %d Choice: %s (Faction: %d)"), 
+		CurrentStageIndex, *SelectedData.Description, (uint8)CurrentFaction);
 
-	// 2. 스탯 수정 대신 우선 로그로 확인 (아직 플레이어 체력이 없으므로) [cite: 46]
-	// %s는 문자열, %f는 실수, %d는 정수를 출력합니다.
-	UE_LOG(LogTemp, Warning, TEXT("Choice Processed! Faction: %d, Cost: %f, Desc: %s"), 
-		(uint8)CurrentFaction, SelectedData.HealthCost, *SelectedData.Description);
-
-	// 3. 레벨 전환 (BattleLevel이라는 이름의 맵이 에디터에 있어야 작동합니다) [cite: 47]
-	// 맵이 없다면 아래 줄을 주석 처리(//)하면 팅기지 않습니다.
-	// UGameplayStatics::OpenLevel(GetWorld(), FName("BattleLevel"));
+	UGameplayStatics::OpenLevel(GetWorld(), FName("BattleLevel"));
 }
 void UBinaryGameInstance::UpdateLED(EFactionColor WinFaction)
 {
-	for (int32 i = 0; i < LED_Array.Num(); ++i)
+	if (LED_Array.IsValidIndex(CurrentStageIndex))
 	{
-		if (LED_Array[i] == EFactionColor::None)
+		LED_Array[CurrentStageIndex] = WinFaction;
+        
+		if (OnLEDUpdated.IsBound())
 		{
-			LED_Array[i] = WinFaction;
-			break;
+			OnLEDUpdated.Broadcast();
 		}
+	}
+}
+void UBinaryGameInstance::OnBattleWon()
+{
+	CurrentStageIndex++;
+	UE_LOG(LogTemp, Warning, TEXT("Battle Won! Moving to Stage: %d"), CurrentStageIndex);
+	if (CurrentStageIndex >= 10)
+	{
+		CheckChoicePhaseEnd();
+	}
+	else
+	{
+		UGameplayStatics::OpenLevel(GetWorld(), FName("BattleLevel"));
 	}
 }
 void UBinaryGameInstance::GetRandomChoices(FChoiceData& OutRed, FChoiceData& OutBlue)
@@ -48,4 +63,40 @@ void UBinaryGameInstance::GetRandomChoices(FChoiceData& OutRed, FChoiceData& Out
 	if(RowA) OutRed = *RowA;
 	if(RowB) OutBlue = *RowB;
 
+}
+void UBinaryGameInstance::CheckChoicePhaseEnd()
+{
+	int32 RedCount = 0;
+	int32 BlueCount = 0;
+	for (EFactionColor Faction : LED_Array)
+	{
+		if (Faction == EFactionColor::Red) RedCount++;
+		else if (Faction == EFactionColor::Blue) BlueCount++;
+	}
+
+	if (RedCount > BlueCount)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GAME CLEAR! Winner: RED"));
+		// TODO: RedEndingLevel 로 이동
+	}
+	else if (BlueCount > RedCount)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GAME CLEAR! Winner: BLUE"));
+		// TODO: BlueEndingLevel 로 이동
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("GAME CLEAR! DRAW"));
+	}
+	UGameplayStatics::OpenLevel(GetWorld(), FName("BattleLevel"));
+}
+void UBinaryGameInstance::SaveStatsFromCharacter()
+{
+	ACharacter* PlayerChar = UGameplayStatics::GetPlayerCharacter(GetWorld(), 0);
+	if (AABinaryCharacter* BP = Cast<AABinaryCharacter>(PlayerChar))
+	{
+		SavedPlayerStats = BP->PlayerStats; 
+        
+		UE_LOG(LogTemp, Warning, TEXT("Stats Saved! HP: %.1f"), SavedPlayerStats.CurrentHealth);
+	}
 }

@@ -6,7 +6,8 @@
 			"ABinaryChoiceButton.gen.cpp.obj",
 			"BinaryGameInstance.gen.cpp.obj",
 			"BinarySoul.init.gen.cpp.obj",
-			"BinarySoulTypes.gen.cpp.obj"
+			"BinarySoulTypes.gen.cpp.obj",
+			"UBinaryLEDWidget.gen.cpp.obj"
 		]
 	}
 }

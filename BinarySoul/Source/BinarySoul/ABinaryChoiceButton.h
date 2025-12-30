@@ -8,6 +8,7 @@
 #include "ABinaryChoiceButton.generated.h"
 class UWidgetComponent;
 class UStaticMeshComponent;
+class AABinaryCharacter;
 UCLASS()
 class BINARYSOUL_API ABinaryChoiceButton : public AActor
 {
@@ -30,5 +31,5 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Choice")
 	void InitializeButton(FChoiceData NewData);
 	UFUNCTION(BlueprintCallable, Category="Choice")
-	void OnInteracted();
+	void OnInteracted(AABinaryCharacter* PlayerCharacter);
 };

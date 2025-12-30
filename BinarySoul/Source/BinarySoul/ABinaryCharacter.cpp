@@ -9,6 +9,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "ABinaryChoiceButton.h"
+#include "BinaryGameInstance.h"
 
 // Sets default values
 AABinaryCharacter::AABinaryCharacter()
@@ -26,6 +27,8 @@ AABinaryCharacter::AABinaryCharacter()
 	
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	PlayerStats.MaxHealth = 100.0f;
+	PlayerStats.CurrentHealth = PlayerStats.MaxHealth;
 }
 
 void AABinaryCharacter::BeginPlay()
@@ -39,6 +42,12 @@ void AABinaryCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	UBinaryGameInstance* GI = Cast<UBinaryGameInstance>(GetWorld()->GetGameInstance());
+	if (GI)
+	{
+			PlayerStats = GI->SavedPlayerStats;
+		UE_LOG(LogTemp, Warning, TEXT("Stats Loaded! HP: %f"), PlayerStats.CurrentHealth);
+	}
 	
 }
 void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -47,13 +56,10 @@ void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent)) {
 		
-		// MoveAction이 발동(Triggered)되면 Move 함수 실행
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AABinaryCharacter::Move);
 
-		// LookAction이 발동되면 Look 함수 실행
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AABinaryCharacter::Look);
 
-		// InteractAction이 시작(Started)되면 Interact 함수 실행 (한 번만 실행)
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AABinaryCharacter::Interact);
 	}
 
@@ -61,18 +67,14 @@ void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 void AABinaryCharacter::Move(const FInputActionValue& Value)
 {
-	// 입력값 (Vector2D: X, Y)
 	FVector2D MovementVector = Value.Get<FVector2D>();
 
 	if (Controller != nullptr)
 	{
-		// 카메라가 보고 있는 방향을 기준으로 앞/뒤/왼/오 계산
 		const FRotator Rotation = Controller->GetControlRotation();
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// 전방 벡터
 		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
-		// 우측 벡터
 		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
@@ -93,15 +95,13 @@ void AABinaryCharacter::Look(const FInputActionValue& Value)
 
 void AABinaryCharacter::Interact()
 {
-	// Unity의 Physics.Raycast와 대응되는 LineTrace
 	FVector Start = FollowCamera->GetComponentLocation();
 	FVector Forward = FollowCamera->GetForwardVector();
-	FVector End = Start + (Forward * 800.0f); // 5미터 앞까지 검사
+	FVector End = Start + (Forward * 800.0f);
 	FHitResult HitResult;
 	FCollisionQueryParams Params;
-	Params.AddIgnoredActor(this); // 나는 무시
+	Params.AddIgnoredActor(this);
 
-	// 트레이스 발사 (ECC_Visibility 채널 사용)
 	bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, Start, End, ECC_Visibility, Params);
 
 	if (bHit)
@@ -109,17 +109,46 @@ void AABinaryCharacter::Interact()
 		AActor* HitActor = HitResult.GetActor();
 		if (HitActor)
 		{
-			// 맞은 물체가 버튼인지 확인하고 Cast
 			ABinaryChoiceButton* Button = Cast<ABinaryChoiceButton>(HitActor);
 			if (Button)
 			{
-				Button->OnInteracted();
-				
-				// 디버그용 구체 그리기 (Unity의 Gizmos.DrawWireSphere)
-				// #include "DrawDebugHelpers.h" 필요
-				// DrawDebugSphere(GetWorld(), HitResult.Location, 20.f, 12, FColor::Green, false, 2.f);
+				Button->OnInteracted(this);
 			}
 		}
+	}
+}
+void AABinaryCharacter::UpdateHealth(float HealthAmount)
+{
+	if (bIsDead) return;
+	
+	PlayerStats.CurrentHealth += HealthAmount;
+	PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
+	if (GEngine)
+	{
+		FString DebugMsg = FString::Printf(TEXT("Health Changed: %.1f / %.1f (Amount: %.1f)"), PlayerStats.CurrentHealth, PlayerStats.MaxHealth, HealthAmount);
+		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, DebugMsg);
+	}
+	if (PlayerStats.CurrentHealth <= 0.0f)
+	{
+		bIsDead=true;
+		if (APlayerController* PC = Cast<APlayerController>(Controller))
+		{
+			DisableInput(PC);
+		}
+		OnDeath();
+	}
+}
+
+void AABinaryCharacter::UpdateMaxHealth(float Amount)
+{
+	PlayerStats.MaxHealth += Amount;
+	if (Amount > PlayerStats.MaxHealth)
+	{
+		UpdateHealth(Amount);
+	}
+	else
+	{
+		PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
 	}
 }
 
@@ -127,4 +156,3 @@ void AABinaryCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 }
-

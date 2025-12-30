@@ -27,3 +27,20 @@ struct FChoiceData : public FTableRowBase
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	EFactionColor FactionType;
 };
+USTRUCT(BlueprintType)
+struct FPlayerStats
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxHealth = 100.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float CurrentHealth = 100.0f;
+
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// float AttackPower = 10.0f;
+    
+	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	// int32 Gold = 0;
+};

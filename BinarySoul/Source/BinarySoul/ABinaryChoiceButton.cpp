@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "Kismet/GameplayStatics.h"
 #include "ABinaryChoiceButton.h"
 #include "Components/StaticMeshComponent.h"
 #include "Components/WidgetComponent.h"
 #include "BinaryGameInstance.h"
+#include "ABinaryCharacter.h"
 
 ABinaryChoiceButton::ABinaryChoiceButton()
 {
@@ -18,7 +18,7 @@ ABinaryChoiceButton::ABinaryChoiceButton()
     
 	DescriptionWidget->SetWidgetSpace(EWidgetSpace::World);
 	DescriptionWidget->SetRelativeLocation(FVector(0.0f, 0.0f, 150.0f));
-	
+	DescriptionWidget->SetDrawAtDesiredSize(true);
 }
 void ABinaryChoiceButton::InitializeButton(FChoiceData NewData)
 {
@@ -28,15 +28,19 @@ void ABinaryChoiceButton::InitializeButton(FChoiceData NewData)
 	// ButtonData.Description 내용으로 갱신하는 로직을 추가할 수 있습니다.
 }
 
-void ABinaryChoiceButton::OnInteracted()
+void ABinaryChoiceButton::OnInteracted(AABinaryCharacter* PlayerCharacter)
 {
-	// [수정] AActor에서는 GetWorld()->GetGameInstance()로 접근해야 합니다.
-	// Unity의 FindObjectOfType<GameManager>()와 비슷합니다.
+	if (PlayerCharacter)
+	{
+		PlayerCharacter->UpdateHealth(-ButtonData.HealthCost);
+	}
+	
 	UBinaryGameInstance* GI = Cast<UBinaryGameInstance>(GetWorld()->GetGameInstance());
 	if (GI)
 	{
 		GI->ProcessChoice(ButtonData);
 	}
+	
 }
 
 

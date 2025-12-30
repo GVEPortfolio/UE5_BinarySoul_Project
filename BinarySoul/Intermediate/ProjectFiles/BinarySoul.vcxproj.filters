@@ -82,5 +82,11 @@
     <ClInclude Include="..\..\Source\BinarySoul\BinarySoulTypes.h">
       <Filter>Source\BinarySoul</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\UBinaryLEDWidget.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\UBinaryLEDWidget.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
