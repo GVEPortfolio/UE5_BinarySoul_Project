@@ -23,8 +23,12 @@ protected:
 	// 블루프린트에서 가져다 쓸 변수들 (BlueprintReadOnly 필수!)
 	
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
-	float GroundSpeed; // 땅에서의 이동 속도
+	float ForwardVelocity;
 
+	// [신규] 좌우 속도 (+:오른쪽, -:왼쪽)
+	UPROPERTY(BlueprintReadOnly, Category = "Movement")
+	float SideVelocity;
+	
 	UPROPERTY(BlueprintReadOnly, Category = "Movement")
 	bool bIsFalling; // 공중에 떠있는가? (점프 중)
 

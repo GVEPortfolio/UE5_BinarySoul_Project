@@ -40,7 +40,6 @@ void ABinaryChoiceButton::OnInteracted(AABinaryCharacter* PlayerCharacter)
 	{
 		GI->ProcessChoice(ButtonData);
 	}
-	
 }
 
 

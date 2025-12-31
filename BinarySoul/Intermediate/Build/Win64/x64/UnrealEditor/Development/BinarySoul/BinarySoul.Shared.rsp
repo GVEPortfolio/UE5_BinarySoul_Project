@@ -291,6 +291,8 @@
 /I "../Plugins/EnhancedInput/Intermediate/Build/Win64/UnrealEditor/Inc/EnhancedInput/UHT"
 /I "../Plugins/EnhancedInput/Source"
 /I "../Plugins/EnhancedInput/Source/EnhancedInput/Public"
+/I "../Intermediate/Build/Win64/UnrealEditor/Inc/AnimGraphRuntime/UHT"
+/I "Runtime/AnimGraphRuntime/Public"
 /I "D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd"
 /external:W0
 /external:I "ThirdParty/GuidelinesSupportLibrary/GSL-1144/include"

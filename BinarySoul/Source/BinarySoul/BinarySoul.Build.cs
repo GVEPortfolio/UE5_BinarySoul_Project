@@ -11,7 +11,7 @@ public class BinarySoul : ModuleRules
 		PublicDependencyModuleNames.AddRange(new string[]
 		{
 			"Core", "CoreUObject", "Engine", "InputCore", "AIModule","EnhancedInput",
-			"UMG", "Slate", "SlateCore"
+			"UMG", "Slate", "SlateCore", "AnimGraphRuntime"
 		});
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

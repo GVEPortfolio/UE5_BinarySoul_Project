@@ -8,6 +8,7 @@
 			"BinaryGameInstance.gen.cpp.obj",
 			"BinarySoul.init.gen.cpp.obj",
 			"BinarySoulTypes.gen.cpp.obj",
+			"BinaryTarget.gen.cpp.obj",
 			"UBinaryLEDWidget.gen.cpp.obj"
 		]
 	}
