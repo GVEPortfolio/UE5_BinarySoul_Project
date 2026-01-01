@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
+    <None Include="..\..\BinarySoul.sln.DotSettings.user" />
     <None Include="..\..\BinarySoul.uproject" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEditorPerProjectUserSettings.ini">
       <Filter>Config</Filter>
     </None>
     <None Include="..\..\Config\DefaultEngine.ini">
@@ -30,6 +35,48 @@
     <Filter Include="Source\BinarySoul">
       <UniqueIdentifier>{9507F47C-D1A6-343B-80D7-8947B4958AAD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\BinarySoul\.idea">
+      <UniqueIdentifier>{E61BA3E5-CEEB-3BB7-BAE7-DEFF47CBDF96}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\BinarySoul\.idea\.gitignore">
+      <Filter>Source\BinarySoul\.idea</Filter>
+    </None>
+    <None Include="..\..\Source\BinarySoul\.idea\indexLayout.xml">
+      <Filter>Source\BinarySoul\.idea</Filter>
+    </None>
+    <None Include="..\..\Source\BinarySoul\.idea\projectSettingsUpdater.xml">
+      <Filter>Source\BinarySoul\.idea</Filter>
+    </None>
+    <None Include="..\..\Source\BinarySoul\.idea\vcs.xml">
+      <Filter>Source\BinarySoul\.idea</Filter>
+    </None>
+    <None Include="..\..\Source\BinarySoul\.idea\workspace.xml">
+      <Filter>Source\BinarySoul\.idea</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\BinarySoul\ABinaryCharacter.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\ABinaryCharacter.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\ABinaryChoiceButton.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\ABinaryChoiceButton.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\BinaryAnimInstance.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\BinaryAnimInstance.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\BinaryGameInstance.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\BinaryGameInstance.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
     <None Include="..\..\Source\BinarySoul\BinarySoul.Build.cs">
       <Filter>Source\BinarySoul</Filter>
     </None>
@@ -39,20 +86,26 @@
     <ClInclude Include="..\..\Source\BinarySoul\BinarySoul.h">
       <Filter>Source\BinarySoul</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\BinarySoulTypes.cpp">
-      <Filter>Source\BinarySoul</Filter>
-    </ClCompile>
     <ClInclude Include="..\..\Source\BinarySoul\BinarySoulTypes.h">
       <Filter>Source\BinarySoul</Filter>
     </ClInclude>
-    <Filter Include="Source\BinarySoul\GameInstance">
-      <UniqueIdentifier>{02B219A8-2187-3E1E-8C14-28C2BF457D92}</UniqueIdentifier>
-    </Filter>
-    <ClCompile Include="..\..\Source\BinarySoul\GameInstance\BinaryGameInstance.cpp">
-      <Filter>Source\BinarySoul\GameInstance</Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\BinaryTarget.cpp">
+      <Filter>Source\BinarySoul</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\GameInstance\BinaryGameInstance.h">
-      <Filter>Source\BinarySoul\GameInstance</Filter>
+    <ClInclude Include="..\..\Source\BinarySoul\BinaryTarget.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\EnemySpawner.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\EnemySpawner.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\UBinaryLEDWidget.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\UBinaryLEDWidget.h">
+      <Filter>Source\BinarySoul</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

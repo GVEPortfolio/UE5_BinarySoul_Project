@@ -4,7 +4,127 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="32913499-625c-41ee-9706-6beda6590fce" name="변경" comment="" />
+    <list default="true" id="32913499-625c-41ee-9706-6beda6590fce" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/World/Mainworld.umap" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/World/Mainworld_HLOD0_Instancing.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/6A/IS40CYEC7O3YLPRJSNXD8Z.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/8T/M52TA4EU369VLNMN09JJ3K.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/AV/GPXXULBU1TL84JXKY7O03E.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/QY/ESZ9T22ACEN6C8YTUM2VY4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/UV/CEMJJLZ2DZ0GP6TOKV8YCQ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/0/ZV/PHXOGCP8C9ERC58F6NOY9M.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/1/C7/DZPBFXXGKYW54F2Q4CIX2B.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/1/QA/RJW89VEAY4NZL5LO7NEM75.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/1/TZ/490TWYGVI5ACYWV5UKRKGI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/1/W7/6FCGW6HRXS9FI25W26PQVM.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/1/WB/4S5XQT6F37UYTAJXYTV8TY.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/2/15/HB17ITHDQBCXZ5M7QQL66W.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/2/OX/2X98OU6JZ12WCB5RFWAUBX.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/2/Q7/JKTY1U74BZXEJ84ZGJGY0S.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/2/SC/BQGS8U6ETHS2NTIN5SV10W.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/1R/PEVHMX6M5PCIIVAFNW4Q35.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/8F/DFB60CJR4RZIB55OQXHWY2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/FE/IBGOTA2CF344XMAEIDZQ1D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/IY/02ANH2SLXDQFJLR7PUAVJ7.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/L8/6ENFDV9E7VC7UQ5UH17TGR.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/PM/ZYPQLH59XSZJQC7YCLCCOV.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/R2/5P068F9U5NSWPNR13HDCM8.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/3/U4/04F945ZWU716H6EGBTVE6D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/4/0L/73WQXIFV6PP9PD9TR77LPP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/4/41/9DVDQYJ45XVMQN9VPNFZZY.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/5/94/962LUQCAA1C502MA9KRDI9.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/5/A8/2UXTMMQTI8IL6IPZN634AP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/5/GO/72WPXBZK9WMNHJDBLZ7NQZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/5/MW/6KARNB6ZOYZ5LMZ6XTHQYV.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/2I/Y0X4DV2AVD2N8VYEXFDU0K.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/A5/9QAN9TMBYWJCOZEB3ESVN8.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/GQ/FC5SW6SU8J3UFKK223QYYQ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/LB/KU830C6XVLW9E2M2BFN2CD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/NQ/P1ABUJ2AY6UIOZ545YX3NW.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/PY/7WZ3VZNFQD1TH4IZZGRI60.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/QB/WMB5H6ERJJN7EJC3F2SY6P.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/WY/JJDNYW9TY4YNIU9Z8KU67P.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/XZ/R36P978TZI3RLYFECR3QVZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/6/Y9/CE7QGM8OH6ED5BZRU4VUME.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/7/4F/51PR2IJQMIF006LSZMUNNN.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/7/4P/3NPEGE7GI1472UA885JTGJ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/7/BO/R81TXT6P75SHYEURWUGLDZ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/7/DA/K0JY7CHMU9JBFP9ZJFQRSC.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/7/OP/PNQQVE06IO18RSL2P9SVUL.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/8/41/32XPFVBLM53TE5EQC2KF0N.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/8/A2/KAZA3QMP1FXUEBYDMGLRAT.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/8/B9/2XZFNXSMEVWGDMA27SM4BJ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/8/RN/2TKQ46QPYEMWWON8IJC3LD.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/9/PE/7UURFJXKSIWGUE0GHKZ0S5.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/9/WH/94PZ3JYEH5DPMXNU7NAY1O.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/9/ZI/3JC8JEJW30DD5MI3OZZ47S.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/4E/V4HYL57FR36HB0FY01WMIX.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/5R/LWLWLRO0Q9QAIC95CZ85KN.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/65/IADMNNW24G0OAKT0I2340D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/8S/FDAEUFJ1J0YAG55YXQ3VEH.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/QH/1P3TCTFC1WQ4743JHYW1AJ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/SX/FIHFAUI5UQWX8PEDXVITE6.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/T8/SR3NXGC1NGR4J801ZK8K18.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/A/V7/LEX1K9FG4FB2GILESJ6O1G.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/B/22/A6P2H8NCU5M30L1F7K29JN.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/B/GG/Z4NXX95714BA94SDDKNR14.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/B/RK/AFD99AWSS2M7NXRWQER6B4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/B/UL/MYTFN5346ET49Q387I2YI4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/B/VK/FBSS9QWL5PCG2DJMQNBMBQ.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/C/0D/VXXLFSYW9F4E75712O89GI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/C/3D/8AE6FFBCAM5MAHWUAL48HM.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/C/40/ID5DLN5GIZYKEEYNM55MTP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/C/4G/4XQTB3P0I8GV0PWVQTZ9FL.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/D/6H/Z64Z2DERDKZ2345PDHEQK4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/D/B0/2XYR81TG626TND7VP4F5T8.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/D/JV/QFE2YLPC18OT8BOE6VD445.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/E/IK/P3UB75326HDVCTP3EQ6IP2.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalActors__/World/Mainworld/E/O9/7FN81V41BV0HXWDD6P3QR3.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalObjects__/World/Mainworld/0/NE/UEVGFTEDARN4HVD46B5ZJ0.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalObjects__/World/Mainworld/1/HR/DROU072V4KWEFP9YW300LM.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalObjects__/World/Mainworld/8/OR/VW9FJ5WN5H53LCDZS7HKA6.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalObjects__/World/Mainworld/A/KW/D6EKBD5FAE3LSPYHTJ6HIK.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Content/__ExternalObjects__/World/Mainworld/D/X9/279BQK71L6ZSBN6GC4YOZ4.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRules/BinarySoulModuleRules.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRules/BinarySoulModuleRules.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfoInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Intermediate/CachedAssetRegistryDiscovery.bin" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Intermediate/CachedAssetRegistryDiscovery.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Intermediate/CachedAssetRegistry_0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Intermediate/CachedAssetRegistry_0.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/Autosaves/PackageRestoreData.json" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/Autosaves/PackageRestoreData.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/Logs/BinarySoul.log" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/Logs/BinarySoul.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/Logs/cef3.log" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/Logs/cef3.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/BrowsingTopicsState" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/BrowsingTopicsState" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/2938047a141318fc_0" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/2938047a141318fc_0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/aaada4b53a4bc942_0" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/aaada4b53a4bc942_0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/index-dir/the-real-index" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Code Cache/js/index-dir/the-real-index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/DIPS" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/DIPS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Extension State/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Extension State/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/GCM Store/Encryption/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/GCM Store/Encryption/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/History" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/History" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/History-journal" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/History-journal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Local Storage/leveldb/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Local Storage/leveldb/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Cookies" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Cookies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Cookies-journal" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Cookies-journal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Network Persistent State" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/Network Persistent State" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/TransportSecurity" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Network/TransportSecurity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Preferences" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Preferences" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Session Storage/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Session Storage/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Site Characteristics Database/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Site Characteristics Database/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Sync Data/LevelDB/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Sync Data/LevelDB/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Top Sites" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/Top Sites" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/000003.log" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/000003.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/metadata/000003.log" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/metadata/000003.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/metadata/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Default/shared_proto_db/metadata/LOG" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Local State" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Local State" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Variations" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/Variations" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/first_party_sets.db" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/first_party_sets.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/segmentation_platform/ukm_db" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/segmentation_platform/ukm_db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/segmentation_platform/ukm_db-journal" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Saved/webcache_6613/segmentation_platform/ukm_db-journal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Source/BinarySoul/ABinaryCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Source/BinarySoul/ABinaryCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BinarySoul/Source/BinarySoul/ABinaryCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul/Source/BinarySoul/ABinaryCharacter.h" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,9 +133,25 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "MyungJewon"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/MyungJewon/UE5_BinarySoul_Project.git",
+    "accountId": "4123f16a-9ff2-4952-b7ba-af2599d82da5"
+  }
+}]]></component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="376eBjLwx5zzcoHZf1wQObkeK68" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,10 +160,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "feature/player__stat__hud",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "node.js.detected.package.eslint": "true",
@@ -48,6 +186,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766227815731</updated>
       <workItem from="1766227817198" duration="665000" />
+      <workItem from="1766817340976" duration="10000" />
     </task>
     <servers />
   </component>
