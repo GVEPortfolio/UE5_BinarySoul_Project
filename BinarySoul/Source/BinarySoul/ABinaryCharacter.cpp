@@ -11,17 +11,18 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "BinaryGameInstance.h"
-#include "BinaryTarget.h"                // 적 클래스 헤더
-#include "Components/ProgressBar.h"      // HUD 프로그레스바 제어용
-#include "Components/TextBlock.h"        // HUD 텍스트 제어용
-#include "Blueprint/UserWidget.h"        // 위젯 생성용
-#include "Components/BoxComponent.h" // 필수 헤더
-#include "Kismet/GameplayStatics.h"
-// Sets default values
+#include "BinaryTarget.h"
+#include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
+#include "Blueprint/UserWidget.h"
+#include "Components/BoxComponent.h"
+
+// 생성자: 컴포넌트 초기화 및 기본 설정
 AABinaryCharacter::AABinaryCharacter()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	// 1. 카메라 설정
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(FName("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 400.0f;
@@ -31,15 +32,16 @@ AABinaryCharacter::AABinaryCharacter()
 	FollowCamera->SetupAttachment(CameraBoom);
 	FollowCamera->bUsePawnControlRotation = false;
 	
-    // 기본적으로 탐험 모드(자유 시점)로 시작
+    // 2. 이동/회전 설정
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
     
+	// 3. 스탯 초기화
 	PlayerStats.MaxHealth = 100.0f;
 	PlayerStats.CurrentHealth = PlayerStats.MaxHealth;
 	
-    // 초기 속도 설정
-	GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
+	// 4. 무기 및 충돌체 설정
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("WeaponMesh"));
 	WeaponMesh->SetupAttachment(GetMesh(), FName("WeaponSocket"));
 	WeaponMesh->SetCollisionProfileName(TEXT("NoCollision"));
@@ -47,18 +49,18 @@ AABinaryCharacter::AABinaryCharacter()
 	WeaponCollisionBox = CreateDefaultSubobject<UBoxComponent>(TEXT("WeaponBox"));
 	WeaponCollisionBox->SetupAttachment(WeaponMesh);
 	
-	// 처음엔 꺼둡니다 (평소에 닿으면 안 되니까)
 	WeaponCollisionBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	WeaponCollisionBox->SetCollisionObjectType(ECC_WorldDynamic);
 	WeaponCollisionBox->SetCollisionResponseToAllChannels(ECR_Ignore);
 	WeaponCollisionBox->SetCollisionResponseToChannel(ECC_Pawn, ECR_Overlap);
-	
 }
 
+// BeginPlay: 게임 시작 시 로직 (입력 매핑, 데이터 로드, UI 생성, 델리게이트 연결)
 void AABinaryCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	// 1. Enhanced Input 매핑
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
@@ -67,7 +69,7 @@ void AABinaryCharacter::BeginPlay()
 		}
 	}
 
-    // 게임 인스턴스에서 스탯 로드
+    // 2. 게임 인스턴스에서 스탯 로드
 	UBinaryGameInstance* GI = Cast<UBinaryGameInstance>(GetWorld()->GetGameInstance());
 	if (GI)
 	{
@@ -75,57 +77,47 @@ void AABinaryCharacter::BeginPlay()
 		UE_LOG(LogTemp, Warning, TEXT("Stats Loaded! HP: %f"), PlayerStats.CurrentHealth);
 	}
 
-    // [신규] HUD 위젯 생성 및 초기화
+    // 3. HUD 위젯 생성
 	if (APlayerController* PC = Cast<APlayerController>(GetController()))
 	{
-		// 2. 변환된 PC를 넣어줍니다.
 		HUDWidget = CreateWidget<UUserWidget>(PC, HUDClass);
-    
 		if (HUDWidget)
 		{
 			HUDWidget->AddToViewport();
 			UpdateHUDTargetInfo(false); 
 		}
 	}
+
+	// 4. 델리게이트(이벤트) 연결
 	WeaponCollisionBox->OnComponentBeginOverlap.AddDynamic(this, &AABinaryCharacter::OnWeaponOverlap);
+	
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance)
 	{
 		AnimInstance->OnMontageEnded.AddDynamic(this, &AABinaryCharacter::OnAttackMontageEnded);
-        
-		UE_LOG(LogTemp, Error, TEXT(">>>>> Montage Delegate Bound Successfully! : %s"), *AnimInstance->GetName());
-	}
-	else
-	{
-		UE_LOG(LogTemp, Error, TEXT(">>>>> CRITICAL ERROR: AnimInstance is NULL!"));
-	}
-}
-void AABinaryCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
-{
-	// 나 자신(Player)은 때리면 안 되고, 적(BinaryTarget)만 때려야 함
-	if (OtherActor && OtherActor != this && OtherActor->IsA(ABinaryTarget::StaticClass()))
-	{
-		// 데미지 적용 (예: 20)
-		UGameplayStatics::ApplyDamage(OtherActor, 20.0f, GetController(), this, UDamageType::StaticClass());
-
-		UE_LOG(LogTemp, Warning, TEXT("Hit Enemy: %s"), *OtherActor->GetName());
-        
-		// (선택) 타격 이펙트나 소리를 여기서 재생하면 됨
+		UE_LOG(LogTemp, Warning, TEXT(">>>>> Montage Delegate Bound Successfully!"));
 	}
 }
 
-// 4. [신규] 판정 스위치 함수 구현
-void AABinaryCharacter::SetWeaponCollisionEnabled(bool bEnabled)
+// Tick: 매 프레임 실행 (락온 시점 갱신)
+void AABinaryCharacter::Tick(float DeltaTime)
 {
-	if (bEnabled)
+	Super::Tick(DeltaTime);
+    
+	if (CurrentTarget && !isRunning)
 	{
-		WeaponCollisionBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-	}
-	else
-	{
-		WeaponCollisionBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		ABinaryTarget* TargetEnemy = Cast<ABinaryTarget>(CurrentTarget);
+		if (TargetEnemy ->IsDead())
+		{
+			ToggleLockOn();
+		}else
+		{
+			UpdateLockOnRotation(DeltaTime);
+		}
 	}
 }
+
+// 입력 바인딩 설정
 void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -144,6 +136,11 @@ void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 	}
 }
 
+/* -------------------------------------------------------------------------- */
+/* Input Handler Functions                         */
+/* -------------------------------------------------------------------------- */
+
+// 이동 입력 처리
 void AABinaryCharacter::Move(const FInputActionValue& Value)
 {
 	if (bIsAttacking) return;
@@ -163,24 +160,15 @@ void AABinaryCharacter::Move(const FInputActionValue& Value)
         if (isRunning)
         {
              GetCharacterMovement()->MaxWalkSpeed = RunSpeed;
-             
         }
         else
         {
+            // 락온 상태일 때의 속도 제어 (뒷걸음질 등)
             if (CurrentTarget)
             {
-                if (MovementVector.Y < 0.0f)
-                {
-                    GetCharacterMovement()->MaxWalkSpeed = BackWalkSpeed;
-                }
-                else if (MovementVector.X != 0.0f)
-                {
-                    GetCharacterMovement()->MaxWalkSpeed = SideSpeed;
-                }
-                else
-                {
-                    GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
-                }
+                if (MovementVector.Y < 0.0f) GetCharacterMovement()->MaxWalkSpeed = BackWalkSpeed;
+                else if (MovementVector.X != 0.0f) GetCharacterMovement()->MaxWalkSpeed = SideSpeed;
+                else GetCharacterMovement()->MaxWalkSpeed = WalkSpeed;
             }
             else
             {
@@ -190,6 +178,7 @@ void AABinaryCharacter::Move(const FInputActionValue& Value)
 	}
 }
 
+// 시점 회전 입력 처리
 void AABinaryCharacter::Look(const FInputActionValue& Value)
 {
 	FVector2D LookAxisVector = Value.Get<FVector2D>();
@@ -201,6 +190,7 @@ void AABinaryCharacter::Look(const FInputActionValue& Value)
 	}
 }
 
+// 상호작용 (버튼 등)
 void AABinaryCharacter::Interact()
 {
 	FVector Start = FollowCamera->GetComponentLocation();
@@ -218,129 +208,39 @@ void AABinaryCharacter::Interact()
 		if (HitActor)
 		{
 			ABinaryChoiceButton* Button = Cast<ABinaryChoiceButton>(HitActor);
-			if (Button)
-			{
-				Button->OnInteracted(this);
-			}
+			if (Button) Button->OnInteracted(this);
 		}
 	}
 }
 
-void AABinaryCharacter::Attack()
-{
-	if (bIsDead) return;
-
-	if (!bIsAttacking)
-	{
-		// 공격 시작할 때 콤보 0으로 확실하게 초기화 후 시작
-		CurrentCombo = 0; 
-		ComboActionBegin();
-	}
-	else
-	{
-		// 공격 중일 때만 예약
-		// [중요] 마지막 공격 중일 때는 예약을 받지 않아야 콤보가 끝남
-		if (CurrentCombo < MaxCombo)
-		{
-			bInputQueued = true; 
-		}
-	}
-}
-void AABinaryCharacter::ComboActionBegin()
-{
-	if (CurrentCombo >= MaxCombo) return;
-
-	// 콤보 카운트 증가
-	CurrentCombo = FMath::Clamp(CurrentCombo + 1, 1, MaxCombo);
-	FString SectionName = FString::Printf(TEXT("Combo%d"), CurrentCombo);
-
-	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
-	if (AnimInstance && ComboActionMontage)
-	{
-		bIsAttacking = true;
-
-		// [핵심 수정] 몽타주가 이미 재생 중이라면 '점프'만 하고, 아니면 새로 틉니다.
-		if (AnimInstance->Montage_IsPlaying(ComboActionMontage))
-		{
-			// 점프를 하면 '종료 이벤트'가 발생하지 않아 데이터가 유지됩니다!
-			AnimInstance->Montage_JumpToSection(FName(*SectionName), ComboActionMontage);
-		}
-		else
-		{
-			// 처음 공격할 때는 재생 시작
-			AnimInstance->Montage_Play(ComboActionMontage, 1.0f);
-			AnimInstance->Montage_JumpToSection(FName(*SectionName), ComboActionMontage);
-		}
-
-		bInputQueued = false; 
-	}
-}
-
-void AABinaryCharacter::ComboCheck()
-{
-	UE_LOG(LogTemp, Warning, TEXT(">>>>> ComboCheck Called! InputQueued: %s"), bInputQueued ? TEXT("True") : TEXT("False"));
-	if (bInputQueued)
-	{
-		ComboActionBegin();
-	}
-}
-
-void AABinaryCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
-{
-	UE_LOG(LogTemp, Error, TEXT(">>>>> Montage Ended Called! Interrupted: %s"), bInterrupted ? TEXT("True") : TEXT("False"));
-	bIsAttacking = false;
-	bInputQueued = false;
-	CurrentCombo = 0;
-	SetWeaponCollisionEnabled(false);
-}
+// 달리기 시작
 void AABinaryCharacter::StartSprint()
 {
 	isRunning = true;
     UpdateRotationMode();
 }
 
+// 달리기 종료
 void AABinaryCharacter::StopSprint()
 {
 	isRunning = false;
     UpdateRotationMode();
 }
 
-void AABinaryCharacter::UpdateRotationMode()
-{
-    // 조건: 타겟이 있고(AND) 달리는 중이 아닐 때만 -> 전투 태세(Strafe)
-    bool bCombatMode = (CurrentTarget != nullptr) && !isRunning;
-
-    if (bCombatMode)
-    {
-        // 적을 바라보고 게걸음
-        bUseControllerRotationYaw = true;
-        GetCharacterMovement()->bOrientRotationToMovement = false;
-    }
-    else
-    {
-        // 이동하는 방향을 바라봄 (탐험 모드)
-        bUseControllerRotationYaw = false;
-        GetCharacterMovement()->bOrientRotationToMovement = true;
-    }
-}
-
+// 락온 토글 (켜기/끄기)
 void AABinaryCharacter::ToggleLockOn()
 {
     // 1. 락온 해제
 	if (CurrentTarget)
 	{
-        // 기존 타겟의 체력 방송 구독 해제
         if (ABinaryTarget* OldTarget = Cast<ABinaryTarget>(CurrentTarget))
         {
             OldTarget->OnHealthChanged.RemoveDynamic(this, &AABinaryCharacter::OnTargetHealthUpdate);
         }
-
 		CurrentTarget = nullptr;
-        UpdateHUDTargetInfo(false); // HUD 끄기
-
-		UE_LOG(LogTemp, Warning, TEXT("Lock-On Disabled"));
+        UpdateHUDTargetInfo(false); 
 	}
-    // 2. 락온 시도 (적 찾기)
+    // 2. 락온 시도
     else
     {
         TArray<AActor*> FoundActors;
@@ -365,29 +265,129 @@ void AABinaryCharacter::ToggleLockOn()
         if (ClosestActor)
         {
             CurrentTarget = ClosestActor;
-            
-            // 새 타겟의 체력 방송 구독
             if (ABinaryTarget* NewTarget = Cast<ABinaryTarget>(CurrentTarget))
             {
                 NewTarget->OnHealthChanged.AddDynamic(this, &AABinaryCharacter::OnTargetHealthUpdate);
             }
-
-            UpdateHUDTargetInfo(true); // HUD 켜기
-            UE_LOG(LogTemp, Warning, TEXT("Lock-On Target: %s"), *CurrentTarget->GetName());
+            UpdateHUDTargetInfo(true);
         }
     }
-
-    // [핵심] 락온 상태 변화에 따라 회전 모드 갱신
     UpdateRotationMode();
 }
 
+/* -------------------------------------------------------------------------- */
+/* Combat Functions                             */
+/* -------------------------------------------------------------------------- */
+
+// 공격 입력 처리 (콤보 시작 또는 예약)
+void AABinaryCharacter::Attack()
+{
+	if (bIsDead) return;
+
+	if (!bIsAttacking)
+	{
+		CurrentCombo = 0; 
+		ComboActionBegin();
+	}
+	else
+	{
+		if (CurrentCombo < MaxCombo) bInputQueued = true; 
+	}
+}
+
+// 콤보 실행 로직 (Montage Jump 활용)
+void AABinaryCharacter::ComboActionBegin()
+{
+	if (CurrentCombo >= MaxCombo) return;
+
+	CurrentCombo = FMath::Clamp(CurrentCombo + 1, 1, MaxCombo);
+	FString SectionName = FString::Printf(TEXT("Combo%d"), CurrentCombo);
+
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && ComboActionMontage)
+	{
+		bIsAttacking = true;
+
+		if (AnimInstance->Montage_IsPlaying(ComboActionMontage))
+		{
+			AnimInstance->Montage_JumpToSection(FName(*SectionName), ComboActionMontage);
+		}
+		else
+		{
+			AnimInstance->Montage_Play(ComboActionMontage, 1.0f);
+			AnimInstance->Montage_JumpToSection(FName(*SectionName), ComboActionMontage);
+		}
+		bInputQueued = false; 
+	}
+}
+
+// 노티파이에서 호출: 다음 콤보가 예약되어 있는지 확인
+void AABinaryCharacter::ComboCheck()
+{
+	if (bInputQueued)
+	{
+		ComboActionBegin();
+	}
+}
+
+// 몽타주 종료 시 정리 (안전장치)
+void AABinaryCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	bIsAttacking = false;
+	bInputQueued = false;
+	CurrentCombo = 0;
+	SetWeaponCollisionEnabled(false);
+}
+
+// 무기 충돌 감지 처리
+void AABinaryCharacter::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor && OtherActor != this && OtherActor->IsA(ABinaryTarget::StaticClass()))
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, 20.0f, GetController(), this, UDamageType::StaticClass());
+		UE_LOG(LogTemp, Warning, TEXT("Hit Enemy: %s"), *OtherActor->GetName());
+	}
+}
+
+// 무기 충돌체 활성화/비활성화 (노티파이 연동)
+void AABinaryCharacter::SetWeaponCollisionEnabled(bool bEnabled)
+{
+	if (bEnabled)
+	{
+		WeaponCollisionBox->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else
+	{
+		WeaponCollisionBox->SetHiddenInGame(true);
+		WeaponCollisionBox->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
+}
+
+// 전투/비전투 상태에 따른 회전 모드 변경
+void AABinaryCharacter::UpdateRotationMode()
+{
+    bool bCombatMode = (CurrentTarget != nullptr) && !isRunning;
+
+    if (bCombatMode)
+    {
+        bUseControllerRotationYaw = true;
+        GetCharacterMovement()->bOrientRotationToMovement = false;
+    }
+    else
+    {
+        bUseControllerRotationYaw = false;
+        GetCharacterMovement()->bOrientRotationToMovement = true;
+    }
+}
+
+// 락온 시 적을 바라보도록 회전 보간
 void AABinaryCharacter::UpdateLockOnRotation(float DeltaTime)
 {
 	if (!CurrentTarget) return;
 
 	FVector Start = GetActorLocation();
 	FVector Target = CurrentTarget->GetActorLocation();
-	Target.Z -= 50.0f; // 적의 허리쯤을 바라보게 조정
+	Target.Z -= 50.0f; 
 
 	FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(Start, Target);
 	FRotator CurrentRotation = GetControlRotation();
@@ -399,64 +399,9 @@ void AABinaryCharacter::UpdateLockOnRotation(float DeltaTime)
 	}
 }
 
-// [신규] 적 체력이 변했을 때 호출됨 (델리게이트)
-void AABinaryCharacter::OnTargetHealthUpdate(float CurrentHP, float MaxHP)
-{
-    if (HUDWidget)
-    {
-        UProgressBar* TargetBar = Cast<UProgressBar>(HUDWidget->GetWidgetFromName(TEXT("TargetHealthBar")));
-        if (TargetBar && MaxHP > 0)
-        {
-            TargetBar->SetPercent(CurrentHP / MaxHP);
-        }
-    }
-}
-
-// [신규] 락온 시 HUD 정보(이름, 바) 켜고 끄기
-void AABinaryCharacter::UpdateHUDTargetInfo(bool bShow)
-{
-    if (!HUDWidget) return;
-
-    UProgressBar* TargetBar = Cast<UProgressBar>(HUDWidget->GetWidgetFromName(TEXT("TargetHealthBar")));
-    UTextBlock* NameText = Cast<UTextBlock>(HUDWidget->GetWidgetFromName(TEXT("TargetNameText")));
-
-    if (bShow)
-    {
-        if (TargetBar) TargetBar->SetVisibility(ESlateVisibility::Visible);
-        if (NameText) 
-        {
-            NameText->SetVisibility(ESlateVisibility::Visible);
-            
-            // [수정] 타겟의 이름 변수(FText)를 가져와서 UI에 표시
-            if (ABinaryTarget* TargetActor = Cast<ABinaryTarget>(CurrentTarget))
-            {
-                NameText->SetText(TargetActor->CharacterName);
-            }
-            else
-            {
-                NameText->SetText(FText::FromString(TEXT("Target")));
-            }
-        }
-        
-        // 켜자마자 현재 체력으로 한 번 업데이트 (꽉 찬 상태가 아닐 수도 있으니)
-        if (ABinaryTarget* Target = Cast<ABinaryTarget>(CurrentTarget))
-        {
-            OnTargetHealthUpdate(Target->CurrentHealth, Target->MaxHealth);
-        }
-    }
-    else
-    {
-        if (TargetBar) TargetBar->SetVisibility(ESlateVisibility::Hidden);
-        if (NameText) NameText->SetVisibility(ESlateVisibility::Hidden);
-    }
-}
-
-void AABinaryCharacter::OnAttackFinished()
-{
-	bIsAttacking = false;
-	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
-	UE_LOG(LogTemp, Warning, TEXT("Attack Finished!"));
-}
+/* -------------------------------------------------------------------------- */
+/* Stats & UI                                   */
+/* -------------------------------------------------------------------------- */
 
 void AABinaryCharacter::UpdateHealth(float HealthAmount)
 {
@@ -464,12 +409,6 @@ void AABinaryCharacter::UpdateHealth(float HealthAmount)
 	
 	PlayerStats.CurrentHealth += HealthAmount;
 	PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
-	
-    if (GEngine)
-	{
-		FString DebugMsg = FString::Printf(TEXT("Health Changed: %.1f / %.1f (Amount: %.1f)"), PlayerStats.CurrentHealth, PlayerStats.MaxHealth, HealthAmount);
-		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Red, DebugMsg);
-	}
 	
     if (PlayerStats.CurrentHealth <= 0.0f)
 	{
@@ -495,13 +434,51 @@ void AABinaryCharacter::UpdateMaxHealth(float Amount)
 	}
 }
 
-void AABinaryCharacter::Tick(float DeltaTime)
+// 델리게이트: 타겟 체력 변경 시 UI 업데이트
+void AABinaryCharacter::OnTargetHealthUpdate(float CurrentHP, float MaxHP)
 {
-	Super::Tick(DeltaTime);
-    
-    // [수정] 타겟이 있고 + 달리는 중이 아닐 때만 시점 강제 고정
-	if (CurrentTarget && !isRunning)
-	{
-		UpdateLockOnRotation(DeltaTime);
-	}
+    if (HUDWidget)
+    {
+        UProgressBar* TargetBar = Cast<UProgressBar>(HUDWidget->GetWidgetFromName(TEXT("TargetHealthBar")));
+        if (TargetBar && MaxHP > 0)
+        {
+            TargetBar->SetPercent(CurrentHP / MaxHP);
+        }
+    }
+}
+
+// HUD 타겟 정보 표시/숨김
+void AABinaryCharacter::UpdateHUDTargetInfo(bool bShow)
+{
+    if (!HUDWidget) return;
+
+    UProgressBar* TargetBar = Cast<UProgressBar>(HUDWidget->GetWidgetFromName(TEXT("TargetHealthBar")));
+    UTextBlock* NameText = Cast<UTextBlock>(HUDWidget->GetWidgetFromName(TEXT("TargetNameText")));
+
+    if (bShow)
+    {
+        if (TargetBar) TargetBar->SetVisibility(ESlateVisibility::Visible);
+        if (NameText) 
+        {
+            NameText->SetVisibility(ESlateVisibility::Visible);
+            if (ABinaryTarget* TargetActor = Cast<ABinaryTarget>(CurrentTarget))
+            {
+                NameText->SetText(TargetActor->CharacterName);
+            }
+            else
+            {
+                NameText->SetText(FText::FromString(TEXT("Target")));
+            }
+        }
+        
+        if (ABinaryTarget* Target = Cast<ABinaryTarget>(CurrentTarget))
+        {
+            OnTargetHealthUpdate(Target->CurrentHealth, Target->MaxHealth);
+        }
+    }
+    else
+    {
+        if (TargetBar) TargetBar->SetVisibility(ESlateVisibility::Hidden);
+        if (NameText) NameText->SetVisibility(ESlateVisibility::Hidden);
+    }
 }

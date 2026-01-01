@@ -95,6 +95,12 @@
     <ClInclude Include="..\..\Source\BinarySoul\BinaryTarget.h">
       <Filter>Source\BinarySoul</Filter>
     </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\EnemySpawner.cpp">
+      <Filter>Source\BinarySoul</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\EnemySpawner.h">
+      <Filter>Source\BinarySoul</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\BinarySoul\UBinaryLEDWidget.cpp">
       <Filter>Source\BinarySoul</Filter>
     </ClCompile>

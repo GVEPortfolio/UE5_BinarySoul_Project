@@ -1,20 +1,15 @@
 // BinaryTarget.cpp
 #include "BinaryTarget.h"
-#include "Components/CapsuleComponent.h" // 캡슐 컴포넌트 헤더
+
+#include "BinaryGameInstance.h"
+#include "Components/CapsuleComponent.h"
+#include "BinarySoulTypes.h"
 
 ABinaryTarget::ABinaryTarget()
 {
-	PrimaryActorTick.bCanEverTick = false;
-
-    // [변경] ACharacter는 이미 RootComponent가 CapsuleComponent입니다.
-    // 따라서 MeshComp 생성 코드는 삭제하고, 기존 설정을 가져와서 씁니다.
-
-    // 1. 캡슐 콜리전 설정 (몬스터 크기)
+    PrimaryActorTick.bCanEverTick = false;
     GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
-    
-    // 2. 락온이 되려면 충돌 채널이 열려있어야 함 (Pawn 채널 등)
     GetCapsuleComponent()->SetCollisionProfileName(TEXT("Pawn"));
-    CharacterName = FText::FromString(TEXT("Unknown Enemy"));
 }
 
 void ABinaryTarget::BeginPlay()
@@ -22,7 +17,33 @@ void ABinaryTarget::BeginPlay()
 	Super::BeginPlay();
     CurrentHealth = MaxHealth;
 }
+void ABinaryTarget::InitializeEnemy(const FEnemyData& Data)
+{
+    // 1. 스탯 적용
+    MaxHealth = Data.MaxHealth;
+    CurrentHealth = MaxHealth;
+    CharacterName = Data.Name;
+    
+    // 몽타주 저장 (TakeDamage에서 쓸 수 있게 멤버 변수로 저장해야 함)
+    HitReactMontage = Data.HitReactMontage;
+    DeathMontage = Data.DeathMontage;
 
+    // 2. 외형(Mesh) 갈아입기
+    if (Data.SkeletalMesh)
+    {
+        GetMesh()->SetSkeletalMesh(Data.SkeletalMesh);
+        
+        // 위치 조정 (모델마다 중심점이 다를 수 있어서 보통 아래로 좀 내립니다)
+        GetMesh()->SetRelativeLocation(FVector(0, 0, -90.0f)); 
+        GetMesh()->SetRelativeRotation(FRotator(0, -90.0f, 0));
+    }
+
+    // 3. 애니메이션 적용
+    if (Data.AnimClass)
+    {
+        GetMesh()->SetAnimInstanceClass(Data.AnimClass);
+    }
+}
 float ABinaryTarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
     float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
@@ -37,9 +58,17 @@ float ABinaryTarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
 
         if (CurrentHealth <= 0.0f)
         {
-            // 사망 처리 (필요시 델리게이트 해제 등을 위해 죽기 전에 방송 한 번 더 하는 게 좋음)
+            bIsDead = true;
             GetMesh()->SetSimulatePhysics(true);
             GetCapsuleComponent()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+            UBinaryGameInstance* GI = Cast<UBinaryGameInstance>(GetWorld()->GetGameInstance());
+            if (GI)
+            {
+                FTimerHandle MyTimerHandle;
+                FTimerDelegate TimerDel;
+                TimerDel.BindUObject(GI, &UBinaryGameInstance::OnBattleWon);
+                GetWorld()->GetTimerManager().SetTimer(MyTimerHandle,TimerDel,3.f,false);
+            }
             // Destroy(); // 바로 삭제하면 HUD가 참조하다 튕길 수 있으니 딜레이 후 삭제 추천
         }
     }

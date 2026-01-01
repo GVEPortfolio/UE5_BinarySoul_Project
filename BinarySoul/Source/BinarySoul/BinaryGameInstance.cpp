@@ -43,7 +43,7 @@ void UBinaryGameInstance::OnBattleWon()
 	}
 	else
 	{
-		UGameplayStatics::OpenLevel(GetWorld(), FName("BattleLevel"));
+		UGameplayStatics::OpenLevel(GetWorld(), FName("MainLevel"));
 	}
 }
 void UBinaryGameInstance::GetRandomChoices(FChoiceData& OutRed, FChoiceData& OutBlue)

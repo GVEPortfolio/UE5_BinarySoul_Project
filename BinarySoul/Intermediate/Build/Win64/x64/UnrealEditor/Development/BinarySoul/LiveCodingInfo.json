@@ -9,6 +9,7 @@
 			"BinarySoul.init.gen.cpp.obj",
 			"BinarySoulTypes.gen.cpp.obj",
 			"BinaryTarget.gen.cpp.obj",
+			"EnemySpawner.gen.cpp.obj",
 			"UBinaryLEDWidget.gen.cpp.obj"
 		]
 	}
