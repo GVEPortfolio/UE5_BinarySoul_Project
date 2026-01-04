@@ -94,7 +94,7 @@ void AABinaryCharacter::BeginPlay()
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance)
 	{
-		AnimInstance->OnMontageEnded.AddDynamic(this, &AABinaryCharacter::OnAttackMontageEnded);
+		AnimInstance->OnMontageEnded.AddDynamic(this, &AABinaryCharacter::OnMontageEnded);
 		UE_LOG(LogTemp, Warning, TEXT(">>>>> Montage Delegate Bound Successfully!"));
 	}
 }
@@ -104,15 +104,45 @@ void AABinaryCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
     
-	if (CurrentTarget && !isRunning)
+	if (isDodge)
+	{
+		GetCharacterMovement()->Velocity = CurrentDodgeDirection * DodgeSpeed;
+	}
+	if (CurrentTarget)
 	{
 		ABinaryTarget* TargetEnemy = Cast<ABinaryTarget>(CurrentTarget);
-		if (TargetEnemy ->IsDead())
+		if (TargetEnemy->IsDead())
 		{
 			ToggleLockOn();
-		}else
+		}
+		else
 		{
 			UpdateLockOnRotation(DeltaTime);
+		}
+	}
+	bool bIsMoving = GetVelocity().SizeSquared() > 1.0f;
+	if (isRunning&& bIsMoving)
+	{
+		float SprintCost = 5.0f; 
+		PlayerStats.CurrentStamina -= SprintCost * DeltaTime;
+		if (PlayerStats.CurrentStamina <= 0.0f)
+		{
+			PlayerStats.CurrentStamina = 0.0f;
+			StopSprint();
+		}
+	}
+	else 
+	{
+		bool bIsActing = isDodge || bIsAttacking;
+
+		if (!bIsActing && PlayerStats.CurrentStamina < PlayerStats.MaxStamina)
+		{
+			PlayerStats.CurrentStamina += PlayerStats.StaminaRegenRate * DeltaTime;
+            
+			if (PlayerStats.CurrentStamina > PlayerStats.MaxStamina)
+			{
+				PlayerStats.CurrentStamina = PlayerStats.MaxStamina;
+			}
 		}
 	}
 }
@@ -128,11 +158,13 @@ void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AABinaryCharacter::Look);
 		EnhancedInputComponent->BindAction(InteractAction, ETriggerEvent::Started, this, &AABinaryCharacter::Interact);
 		EnhancedInputComponent->BindAction(AttackAction, ETriggerEvent::Started, this, &AABinaryCharacter::Attack);
-		
+		EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started, this, &AABinaryCharacter::Dodge);
+
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &AABinaryCharacter::StartSprint);
 		EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &AABinaryCharacter::StopSprint);
 		
 		EnhancedInputComponent->BindAction(lookonAction, ETriggerEvent::Started, this, &AABinaryCharacter::ToggleLockOn);
+
 	}
 }
 
@@ -143,8 +175,8 @@ void AABinaryCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 // 이동 입력 처리
 void AABinaryCharacter::Move(const FInputActionValue& Value)
 {
-	if (bIsAttacking) return;
-
+	if (bIsAttacking||isDodge) return;
+	
 	FVector2D MovementVector = Value.Get<FVector2D>();
 	if (Controller != nullptr)
 	{
@@ -274,7 +306,53 @@ void AABinaryCharacter::ToggleLockOn()
     }
     UpdateRotationMode();
 }
+void AABinaryCharacter::Dodge()
+{
+	if (isDodge || bIsAttacking) return;
+    
+	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+	if (AnimInstance && DodgeActionMontage)
+	{
+		if (PlayerStats.CurrentStamina < 10.0f) return; 
+		isDodge = true;
+		UpdateStamina(10.0f);
+		UpdateRotationMode();
+		FVector InputDir = GetLastMovementInputVector();
+		if (InputDir.SizeSquared() > 0.0f)
+		{
+			CurrentDodgeDirection = InputDir.GetSafeNormal();
+		}
+		else
+		{
+			CurrentDodgeDirection = GetActorForwardVector();
+		}
 
+		SetActorRotation(CurrentDodgeDirection.Rotation());
+		AnimInstance->Montage_Play(DodgeActionMontage, 1.3f);
+       
+	}
+}
+
+void AABinaryCharacter::SetInvincibleEnabled(bool bEnabled)
+{
+	bIsInvincible=bEnabled;
+}
+void AABinaryCharacter::OnMontageEnded(UAnimMontage* Montage, bool bInterrupted)
+{
+	if (Montage == ComboActionMontage)
+	{
+		bIsAttacking = false;
+		bInputQueued = false;
+		CurrentCombo = 0;
+		SetWeaponCollisionEnabled(false);
+	}
+	else if (Montage == DodgeActionMontage)
+	{
+		isDodge = false;
+		SetInvincibleEnabled(false);
+		UpdateRotationMode();
+	}
+}
 /* -------------------------------------------------------------------------- */
 /* Combat Functions                             */
 /* -------------------------------------------------------------------------- */
@@ -283,15 +361,19 @@ void AABinaryCharacter::ToggleLockOn()
 void AABinaryCharacter::Attack()
 {
 	if (bIsDead) return;
-
-	if (!bIsAttacking)
+	if (PlayerStats.CurrentStamina < 20.0f) return;
+	if (!bIsAttacking && !isDodge)
 	{
 		CurrentCombo = 0; 
 		ComboActionBegin();
 	}
 	else
 	{
-		if (CurrentCombo < MaxCombo) bInputQueued = true; 
+		if (CurrentCombo < MaxCombo)
+		{
+			bInputQueued = true; 
+			UE_LOG(LogTemp, Warning, TEXT("Combo Queued!"));
+		}	
 	}
 }
 
@@ -299,9 +381,9 @@ void AABinaryCharacter::Attack()
 void AABinaryCharacter::ComboActionBegin()
 {
 	if (CurrentCombo >= MaxCombo) return;
-
 	CurrentCombo = FMath::Clamp(CurrentCombo + 1, 1, MaxCombo);
 	FString SectionName = FString::Printf(TEXT("Combo%d"), CurrentCombo);
+	UpdateStamina(20.0f);
 
 	UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	if (AnimInstance && ComboActionMontage)
@@ -328,15 +410,6 @@ void AABinaryCharacter::ComboCheck()
 	{
 		ComboActionBegin();
 	}
-}
-
-// 몽타주 종료 시 정리 (안전장치)
-void AABinaryCharacter::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted)
-{
-	bIsAttacking = false;
-	bInputQueued = false;
-	CurrentCombo = 0;
-	SetWeaponCollisionEnabled(false);
 }
 
 // 무기 충돌 감지 처리
@@ -366,7 +439,7 @@ void AABinaryCharacter::SetWeaponCollisionEnabled(bool bEnabled)
 // 전투/비전투 상태에 따른 회전 모드 변경
 void AABinaryCharacter::UpdateRotationMode()
 {
-    bool bCombatMode = (CurrentTarget != nullptr) && !isRunning;
+    bool bCombatMode = (CurrentTarget != nullptr) && !isRunning && !isDodge;
 
     if (bCombatMode)
     {
@@ -406,10 +479,11 @@ void AABinaryCharacter::UpdateLockOnRotation(float DeltaTime)
 void AABinaryCharacter::UpdateHealth(float HealthAmount)
 {
 	if (bIsDead) return;
-	
-	PlayerStats.CurrentHealth += HealthAmount;
-	PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
-	
+	if (!bIsInvincible)
+	{
+		PlayerStats.CurrentHealth += HealthAmount;
+		PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
+	}
     if (PlayerStats.CurrentHealth <= 0.0f)
 	{
 		bIsDead = true;
@@ -433,7 +507,13 @@ void AABinaryCharacter::UpdateMaxHealth(float Amount)
 		PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
 	}
 }
+void AABinaryCharacter::UpdateStamina(float StaminaAmount)
+{
+	if (bIsDead) return;
 
+	PlayerStats.CurrentStamina -= StaminaAmount;
+	PlayerStats.CurrentStamina = FMath::Clamp(PlayerStats.CurrentStamina, 0.0f, PlayerStats.MaxStamina);
+}
 // 델리게이트: 타겟 체력 변경 시 UI 업데이트
 void AABinaryCharacter::OnTargetHealthUpdate(float CurrentHP, float MaxHP)
 {

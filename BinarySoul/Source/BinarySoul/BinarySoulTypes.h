@@ -40,7 +40,13 @@ struct FPlayerStats
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float CurrentHealth = 100.0f;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float CurrentStamina = 100.0f;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MaxStamina = 100.0f;
+	float StaminaRegenRate = 15.0f;
 	// UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	// float AttackPower = 10.0f;
     
