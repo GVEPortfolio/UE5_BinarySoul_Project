@@ -67,7 +67,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	UInputAction* lookonAction;
-
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	UInputAction* DodgeAction;
 	// Movement Settings
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float WalkSpeed = 300.0f;
@@ -80,7 +81,13 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float SideSpeed = 100.0f;
-
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float Spliding = 5000.0f;
+	FVector CurrentDodgeDirection;
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	float DodgeSpeed = 1200.0f;
+	UPROPERTY(EditAnywhere, Category = "Dodge")
+	UAnimMontage* DodgeActionMontage;
 	/* -------------------------------------------------------------------------- */
 	/* Combat & Stats                               */
 	/* -------------------------------------------------------------------------- */
@@ -115,6 +122,8 @@ protected:
 	bool bIsDead = false;
 	bool bIsAttacking = false;
 	bool isRunning = false;
+	bool isDodge = false;
+	bool bIsInvincible = false;
 	bool bInputQueued = false;
 	
 	int32 CurrentCombo = 0;
@@ -140,7 +149,9 @@ protected:
 	void StopSprint();
 	void ToggleLockOn();
 	void Attack();
-
+	void Dodge();
+	UFUNCTION(BlueprintCallable, Category = "Dodge")
+	void SetInvincibleEnabled(bool bEnabled);
 	// Combat Logic
 	void UpdateRotationMode();
 	void UpdateLockOnRotation(float DeltaTime);
@@ -157,16 +168,18 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void ComboCheck();
     
-	UFUNCTION()
-	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 public:
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void UpdateHealth(float Amount);
+	UFUNCTION(BlueprintCallable, Category="Stats")
+	void UpdateStamina(float Amount);
 protected:
 	// Stats & UI Logic
 	
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	void UpdateMaxHealth(float Amount);
+	
+	
 	
 	UFUNCTION(BlueprintCallable, Category="Stats")
 	float GetCurrentHealth() const { return PlayerStats.CurrentHealth; }
@@ -181,4 +194,6 @@ protected:
 	void OnTargetHealthUpdate(float CurrentHP, float MaxHP);
     
 	void UpdateHUDTargetInfo(bool bShow);
+	UFUNCTION() 
+	void OnMontageEnded(UAnimMontage* Montage, bool bInterrupted);
 };
