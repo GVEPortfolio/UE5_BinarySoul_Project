@@ -2,7 +2,7 @@
 #include "BinaryGameInstance.h"
 #include "BinarySoulTypes.h"
 #include "Kismet/GameplayStatics.h"
-#include "ABinaryCharacter.h"
+#include "Player/ABinaryCharacter.h"
 
 UBinaryGameInstance::UBinaryGameInstance()
 {

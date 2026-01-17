@@ -53,24 +53,6 @@
     <None Include="..\..\Source\BinarySoul\.idea\workspace.xml">
       <Filter>Source\BinarySoul\.idea</Filter>
     </None>
-    <ClCompile Include="..\..\Source\BinarySoul\ABinaryCharacter.cpp">
-      <Filter>Source\BinarySoul</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\ABinaryCharacter.h">
-      <Filter>Source\BinarySoul</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\ABinaryChoiceButton.cpp">
-      <Filter>Source\BinarySoul</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\ABinaryChoiceButton.h">
-      <Filter>Source\BinarySoul</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\BinaryAnimInstance.cpp">
-      <Filter>Source\BinarySoul</Filter>
-    </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\BinaryAnimInstance.h">
-      <Filter>Source\BinarySoul</Filter>
-    </ClInclude>
     <ClCompile Include="..\..\Source\BinarySoul\BinaryGameInstance.cpp">
       <Filter>Source\BinarySoul</Filter>
     </ClCompile>
@@ -89,23 +71,65 @@
     <ClInclude Include="..\..\Source\BinarySoul\BinarySoulTypes.h">
       <Filter>Source\BinarySoul</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\BinaryTarget.cpp">
-      <Filter>Source\BinarySoul</Filter>
+    <Filter Include="Source\BinarySoul\Enemy">
+      <UniqueIdentifier>{3D9A0714-E397-3AC2-9CE0-7707607D5CC8}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Enemy\BinaryAIController.cpp">
+      <Filter>Source\BinarySoul\Enemy</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\BinaryTarget.h">
-      <Filter>Source\BinarySoul</Filter>
+    <ClInclude Include="..\..\Source\BinarySoul\Enemy\BinaryAIController.h">
+      <Filter>Source\BinarySoul\Enemy</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\EnemySpawner.cpp">
-      <Filter>Source\BinarySoul</Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Enemy\BinaryTarget.cpp">
+      <Filter>Source\BinarySoul\Enemy</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\EnemySpawner.h">
-      <Filter>Source\BinarySoul</Filter>
+    <ClInclude Include="..\..\Source\BinarySoul\Enemy\BinaryTarget.h">
+      <Filter>Source\BinarySoul\Enemy</Filter>
     </ClInclude>
-    <ClCompile Include="..\..\Source\BinarySoul\UBinaryLEDWidget.cpp">
-      <Filter>Source\BinarySoul</Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Enemy\BTTask_Attack.cpp">
+      <Filter>Source\BinarySoul\Enemy</Filter>
     </ClCompile>
-    <ClInclude Include="..\..\Source\BinarySoul\UBinaryLEDWidget.h">
-      <Filter>Source\BinarySoul</Filter>
+    <ClInclude Include="..\..\Source\BinarySoul\Enemy\BTTask_Attack.h">
+      <Filter>Source\BinarySoul\Enemy</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\Enemy\EnemySpawner.cpp">
+      <Filter>Source\BinarySoul\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\Enemy\EnemySpawner.h">
+      <Filter>Source\BinarySoul\Enemy</Filter>
+    </ClInclude>
+    <Filter Include="Source\BinarySoul\Object">
+      <UniqueIdentifier>{A4F21777-A68F-3524-BF3D-4FA09F6F1454}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Object\ABinaryChoiceButton.cpp">
+      <Filter>Source\BinarySoul\Object</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\Object\ABinaryChoiceButton.h">
+      <Filter>Source\BinarySoul\Object</Filter>
+    </ClInclude>
+    <Filter Include="Source\BinarySoul\Player">
+      <UniqueIdentifier>{E0D80730-F6E8-3F44-BED6-9D8EB8333653}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Player\ABinaryCharacter.cpp">
+      <Filter>Source\BinarySoul\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\Player\ABinaryCharacter.h">
+      <Filter>Source\BinarySoul\Player</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\BinarySoul\Player\BinaryAnimInstance.cpp">
+      <Filter>Source\BinarySoul\Player</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\Player\BinaryAnimInstance.h">
+      <Filter>Source\BinarySoul\Player</Filter>
+    </ClInclude>
+    <Filter Include="Source\BinarySoul\UI">
+      <UniqueIdentifier>{7EDE88C6-664D-3984-807F-896C17BB3683}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\UI\UBinaryLEDWidget.cpp">
+      <Filter>Source\BinarySoul\UI</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\UI\UBinaryLEDWidget.h">
+      <Filter>Source\BinarySoul\UI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
