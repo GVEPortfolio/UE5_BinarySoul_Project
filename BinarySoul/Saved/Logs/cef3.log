@@ -1,4 +1,6 @@
-[30816:25392:0117/145001.059:WARNING:chrome_main_delegate.cc(745)] This is Chrome version 128.0.6613.138 (not a warning)
-[30816:25392:0117/145001.100:WARNING:account_consistency_mode_manager.cc(77)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
-[30816:25392:0117/145003.608:WARNING:external_registry_loader_win.cc(232)] Error observing HKLM: 5
-[19380:19512:0117/145005.628:WARNING:frame_impl.cc(430)] virtual CefFrameImpl::SendProcessMessage sent to detached frame 5-E59B9B57B4DC53BD2A12D61F9B4B25AA will be ignored
+[28160:16960:0118/155758.380:WARNING:chrome_main_delegate.cc(745)] This is Chrome version 128.0.6613.138 (not a warning)
+[28160:16960:0118/155758.676:WARNING:account_consistency_mode_manager.cc(77)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
+[28160:16960:0118/155803.464:WARNING:external_registry_loader_win.cc(232)] Error observing HKLM: 5
+[13184:32676:0118/155807.427:WARNING:frame_impl.cc(430)] virtual CefFrameImpl::SendProcessMessage sent to detached frame 5-C9B82A874FEF7210D23BD6A2254ABDB8 will be ignored
+[28160:16960:0118/194820.375:ERROR:device_event_log_impl.cc(196)] [19:48:20.067] USB: usb_service_win.cc:105 SetupDiGetDeviceProperty({{A45C254E-DF1C-4EFD-8020-67D146A850E0}, 6}) failed: 요소가 없습니다. (0x490)
+[28160:16960:0118/202653.968:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

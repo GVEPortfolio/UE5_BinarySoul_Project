@@ -4,6 +4,7 @@
 #include "Engine/DataTable.h"
 #include "GameFramework/Character.h"
 #include "BinarySoul/BinarySoulTypes.h"
+#include "Components/BoxComponent.h"
 #include "BinaryTarget.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangedSignature, float, CurrentHealth, float, MaxHealth);
@@ -46,6 +47,14 @@ public:
 
 	UFUNCTION()
 	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetHitboxActive(FName TagName, bool bEnable);
 protected:
 	bool bIsDead= false;
+	
+	UFUNCTION()
+	void OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
+						 UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, 
+						 bool bFromSweep, const FHitResult& SweepResult);
 };

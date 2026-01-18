@@ -2,6 +2,7 @@
 #include "BinaryTarget.h"
 #include "BinarySoul/BinaryGameInstance.h"
 #include "Components/CapsuleComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "BinarySoul/BinarySoulTypes.h"
 
 ABinaryTarget::ABinaryTarget()
@@ -15,6 +16,17 @@ void ABinaryTarget::BeginPlay()
 {
 	Super::BeginPlay();
     CurrentHealth = MaxHealth;
+    
+    TArray<UBoxComponent*> AllBoxes;
+    GetComponents<UBoxComponent>(AllBoxes);
+
+    for (UBoxComponent* Box : AllBoxes)
+    {
+        if (Box && Box->ComponentHasTag(FName("Hitbox")))
+        {
+            Box->OnComponentBeginOverlap.AddDynamic(this, &ABinaryTarget::OnWeaponOverlap);
+        }
+    }
 }
 void ABinaryTarget::InitializeEnemy(const FEnemyData& Data)
 {
@@ -90,4 +102,46 @@ void ABinaryTarget::OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupte
 {
     // 나중에 AI에게 "나 공격 끝났어"라고 알려주는 코드가 여기 들어갈 예정입니다.
     // 지금은 비워둡니다.
+}
+void ABinaryTarget::SetHitboxActive(FName TagName, bool bEnable)
+{
+    // 내 몸에 붙은 모든 BoxComponent를 가져옵니다.
+    TArray<UBoxComponent*> AllBoxes;
+    GetComponents<UBoxComponent>(AllBoxes);
+
+    for (UBoxComponent* Box : AllBoxes)
+    {
+        // 1. 컴포넌트 태그가 일치하는지 확인
+        if (Box && Box->ComponentHasTag(TagName))
+        {
+            if (bEnable)
+            {
+                Box->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+                Box->SetHiddenInGame(false); // 디버그용 (빨간색 보임)
+            }
+            else
+            {
+                Box->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+                Box->SetHiddenInGame(true); // 숨김
+            }
+        }
+    }
+}
+
+void ABinaryTarget::OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
+                                    UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, 
+                                    bool bFromSweep, const FHitResult& SweepResult)
+{
+    // 1. 나 자신이나, 내가 아닌 다른 엉뚱한 것과 충돌했는지 체크
+    if (OtherActor == nullptr || OtherActor == this) return;
+
+    // 2. 이미 데미지를 입힐 대상인지 확인 (같은 공격에 10번 맞으면 안 되니까)
+    // (지금은 단순하게 갑니다. 나중에 '중복 피격 방지' 로직을 추가할 수 있습니다.)
+
+    // 3. 로그 출력
+    UE_LOG(LogTemp, Warning, TEXT("⚔️ HIT! Giving Damage to: %s"), *OtherActor->GetName());
+
+    // 4. 데미지 전달! (데미지 양: 10)
+    // ApplyDamage(맞은 놈, 데미지 양, 공격한 놈의 컨트롤러, 공격한 놈(나), 데미지 타입)
+    UGameplayStatics::ApplyDamage(OtherActor, 10.0f, GetController(), this, UDamageType::StaticClass());
 }

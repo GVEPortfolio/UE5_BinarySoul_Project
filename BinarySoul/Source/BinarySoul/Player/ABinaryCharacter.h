@@ -101,7 +101,7 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float LockOnInterpSpeed = 5.0f;
-
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 	/* -------------------------------------------------------------------------- */
 	/* UI                                     */
 	/* -------------------------------------------------------------------------- */

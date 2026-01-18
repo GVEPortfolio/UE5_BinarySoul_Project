@@ -74,6 +74,12 @@
     <Filter Include="Source\BinarySoul\Enemy">
       <UniqueIdentifier>{3D9A0714-E397-3AC2-9CE0-7707607D5CC8}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\BinarySoul\Enemy\ANS_AttackCollision.cpp">
+      <Filter>Source\BinarySoul\Enemy</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\BinarySoul\Enemy\ANS_AttackCollision.h">
+      <Filter>Source\BinarySoul\Enemy</Filter>
+    </ClInclude>
     <ClCompile Include="..\..\Source\BinarySoul\Enemy\BinaryAIController.cpp">
       <Filter>Source\BinarySoul\Enemy</Filter>
     </ClCompile>
