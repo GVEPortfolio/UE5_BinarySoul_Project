@@ -13,10 +13,15 @@
   <component name="ChangeListManager">
     <list default="true" id="a0338e8d-8c55-4f3b-882b-3f97fb84f808" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BinarySoul/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BinarySoul/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/BinarySoulEditor.target" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/BinarySoulEditor.target" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor.modules" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UnrealEditor.modules" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BinarySoul.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/BinarySoul.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Enemy/BP_EnemySpawner.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemy/BP_EnemySpawner.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Enemy/DT_EnemyData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Enemy/DT_EnemyData.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Enemy/DT_EnemyData_Broken.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Player/BP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Player/BP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Player/Characters/Animations/AM_HitReaction.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Player/Characters/Animations/AM_HitReaction.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRules/BinarySoulModuleRules.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRules/BinarySoulModuleRules.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRules/BinarySoulModuleRulesManifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRules/BinarySoulModuleRulesManifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.AssemblyInfoInputs.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.csproj.AssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/BuildRulesProjects/BinarySoulModuleRules/obj/Development/BinarySoulModuleRules.csproj.AssemblyReference.cache" afterDir="false" />
@@ -24,35 +29,31 @@
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/ActionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/BinarySoulEditor/Development/BinarySoulEditor.uhtmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/BinarySoulEditor/Development/BinarySoulEditor.uhtmanifest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/Makefile.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/Makefile.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/TargetMetadata.dat" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/TargetMetadata.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/ActionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/UnrealEditor-BinarySoul.dll.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/UnrealEditor-BinarySoul.dll.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/UnrealEditor-BinarySoul.lib.rsp" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/UnrealEditor-BinarySoul.lib.rsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/CachedAssetRegistryDiscovery.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/CachedAssetRegistryDiscovery.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Intermediate/CachedAssetRegistry_0.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/AutoScreenshot.png" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/AutoScreenshot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Autosaves/PackageRestoreData.json" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Autosaves/PackageRestoreData.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Config/WindowsEditor/EditorPerProjectUserSettings.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Logs/BinarySoul.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Logs/BinarySoul.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/Logs/cef3.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/Logs/cef3.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_0" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_0" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_1" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_2" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_3" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Cache/Cache_Data/data_3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/BrowsingTopicsState" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/BrowsingTopicsState" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Code Cache/js/2938047a141318fc_0" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Code Cache/js/2938047a141318fc_0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Code Cache/js/index-dir/the-real-index" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Code Cache/js/index-dir/the-real-index" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/DIPS" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/DIPS" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Extension State/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Extension State/LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/GCM Store/Encryption/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/GCM Store/Encryption/LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/History" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/History" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/History-journal" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/History-journal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Local Storage/leveldb/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Local Storage/leveldb/LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Cookies" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Cookies" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Cookies-journal" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Cookies-journal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Network Persistent State" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/Network Persistent State" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/TransportSecurity" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Network/TransportSecurity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Preferences" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Preferences" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Session Storage/000003.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Session Storage/000003.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Session Storage/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Session Storage/LOG" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Site Characteristics Database/000003.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Site Characteristics Database/000003.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Site Characteristics Database/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Site Characteristics Database/LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/Sync Data/LevelDB/LOG" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/Sync Data/LevelDB/LOG" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Default/shared_proto_db/000003.log" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Default/shared_proto_db/000003.log" afterDir="false" />
@@ -63,10 +64,11 @@
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/Variations" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/Variations" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/first_party_sets.db" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/first_party_sets.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/segmentation_platform/ukm_db" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/segmentation_platform/ukm_db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/BinarySoul/BinarySoulTypes.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/BinarySoulTypes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Saved/webcache_6613/segmentation_platform/ukm_db-journal" beforeDir="false" afterPath="$PROJECT_DIR$/Saved/webcache_6613/segmentation_platform/ukm_db-journal" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/BinarySoul/Enemy/BinaryTarget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/Enemy/BinaryTarget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/BinarySoul/Enemy/BinaryTarget.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/Enemy/BinaryTarget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/BinarySoul/Enemy/EnemySpawner.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/Enemy/EnemySpawner.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/BinarySoul/Player/ABinaryCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/Player/ABinaryCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/BinarySoul/Player/ABinaryCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/BinarySoul/Player/ABinaryCharacter.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,6 +233,7 @@
       <workItem from="1768719469444" duration="5714000" />
       <workItem from="1769224280156" duration="2483000" />
       <workItem from="1769228565225" duration="953000" />
+      <workItem from="1769230448347" duration="3422000" />
     </task>
     <servers />
   </component>

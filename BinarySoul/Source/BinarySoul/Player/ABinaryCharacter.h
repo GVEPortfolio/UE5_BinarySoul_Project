@@ -86,6 +86,8 @@ public:
 	float DodgeSpeed = 1200.0f;
 	UPROPERTY(EditAnywhere, Category = "Dodge")
 	UAnimMontage* DodgeActionMontage;
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	UAnimMontage* HitReactMontage;
 	/* -------------------------------------------------------------------------- */
 	/* Combat & Stats                               */
 	/* -------------------------------------------------------------------------- */

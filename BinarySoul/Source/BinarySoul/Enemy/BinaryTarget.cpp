@@ -62,8 +62,6 @@ float ABinaryTarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
     {
         CurrentHealth -= ActualDamage;
         CurrentHealth = FMath::Clamp(CurrentHealth, 0.0f, MaxHealth);
-        
-        // [신규] "내 체력 변했어!" 라고 방송 (듣고 있는 플레이어/HUD가 반응함)
         OnHealthChanged.Broadcast(CurrentHealth, MaxHealth);
 
         if (CurrentHealth <= 0.0f)
@@ -83,13 +81,45 @@ float ABinaryTarget::TakeDamage(float DamageAmount, FDamageEvent const& DamageEv
         }
         else 
         {
-            if (HitReactMontage)
+            UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+            if (AnimInstance && HitReactMontage)
             {
-                // 1. 공격 중이었다면 끊김 (몽타주는 기본적으로 덮어씌워짐)
-                PlayAnimMontage(HitReactMontage);
+                AnimInstance->Montage_Play(HitReactMontage);
+
+                FName SectionName = FName("Hit_f");
+
+                if (DamageCauser)
+                {
+                    FVector DirectorToAttacker = DamageCauser->GetActorLocation() - GetActorLocation();
+                    DirectorToAttacker.Normalize();
+
+                    FVector Forward = GetActorForwardVector();
+                    float ForwardDot = FVector::DotProduct(Forward, DirectorToAttacker);
+                    
+                    FVector Right = GetActorRightVector();
+                    float RightDot = FVector::DotProduct(Right, DirectorToAttacker);
+
+                    if (ForwardDot >= 0.5f)
+                    {
+                        SectionName = FName("Hit_f");
+                    }
+                    else if (ForwardDot <= -0.5f)
+                    {
+                        SectionName = FName("Hit_b");
+                    }
+                    else
+                    {
+                        if (RightDot > 0.0f)
+                            SectionName = FName("Hit_r");
+                        else
+                            SectionName = FName("Hit_l");
+                    }
+                }
+
+                // 6. 계산된 섹션으로 점프!
+                AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
                 
-                // 2. 로그 확인
-                UE_LOG(LogTemp, Warning, TEXT("Enemy Staggered! (Hit Reaction)"));
+                UE_LOG(LogTemp, Warning, TEXT("Directional Hit: %s (FwdDot: %f)"), *SectionName.ToString(), FVector::DotProduct(GetActorForwardVector(), (DamageCauser->GetActorLocation() - GetActorLocation()).GetSafeNormal()));
             }
         }
     }

@@ -481,13 +481,36 @@ float AABinaryCharacter::TakeDamage(float DamageAmount, struct FDamageEvent cons
 {
 	// 1. 부모 클래스 로직 (방어력 계산 등이 필요할 때 유용)
 	float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
-    
-	// 2. 데미지가 없거나 0이하면 무시
 	if (ActualDamage <= 0.0f) return 0.0f;
 
 	UpdateHealth(-ActualDamage);
+	if (!bIsInvincible && !bIsDead && HitReactMontage)
+	{
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+		if (AnimInstance)
+		{
+			AnimInstance->Montage_Play(HitReactMontage);
 
-	// 4. 실제로 들어간 데미지 리턴
+			FName SectionName = FName("Hit_l");
+			if (DamageCauser)
+			{
+				FVector DirToAttacker = (DamageCauser->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+				float RightDot = FVector::DotProduct(GetActorRightVector(), DirToAttacker);
+
+				if (RightDot >= 0.0f)
+				{
+					SectionName = FName("Hit_r");
+				}
+				else
+				{
+					SectionName = FName("Hit_l");
+				}
+			}
+			AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
+			isDodge = false; 
+			bIsAttacking = false;
+		}
+	}
 	return ActualDamage;
 }
 /* -------------------------------------------------------------------------- */
