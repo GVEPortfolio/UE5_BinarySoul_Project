@@ -477,7 +477,42 @@ void AABinaryCharacter::UpdateLockOnRotation(float DeltaTime)
 		Controller->SetControlRotation(TargetRotation);
 	}
 }
+float AABinaryCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	// 1. 부모 클래스 로직 (방어력 계산 등이 필요할 때 유용)
+	float ActualDamage = Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+	if (ActualDamage <= 0.0f) return 0.0f;
 
+	UpdateHealth(-ActualDamage);
+	if (!bIsInvincible && !bIsDead && HitReactMontage)
+	{
+		UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
+		if (AnimInstance)
+		{
+			AnimInstance->Montage_Play(HitReactMontage);
+
+			FName SectionName = FName("Hit_l");
+			if (DamageCauser)
+			{
+				FVector DirToAttacker = (DamageCauser->GetActorLocation() - GetActorLocation()).GetSafeNormal();
+				float RightDot = FVector::DotProduct(GetActorRightVector(), DirToAttacker);
+
+				if (RightDot >= 0.0f)
+				{
+					SectionName = FName("Hit_r");
+				}
+				else
+				{
+					SectionName = FName("Hit_l");
+				}
+			}
+			AnimInstance->Montage_JumpToSection(SectionName, HitReactMontage);
+			isDodge = false; 
+			bIsAttacking = false;
+		}
+	}
+	return ActualDamage;
+}
 /* -------------------------------------------------------------------------- */
 /* Stats & UI                                   */
 /* -------------------------------------------------------------------------- */
@@ -485,18 +520,36 @@ void AABinaryCharacter::UpdateLockOnRotation(float DeltaTime)
 void AABinaryCharacter::UpdateHealth(float HealthAmount)
 {
 	if (bIsDead) return;
-	if (!bIsInvincible)
+
+	if (HealthAmount < 0.0f && bIsInvincible)
 	{
-		PlayerStats.CurrentHealth += HealthAmount;
-		PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
+		UE_LOG(LogTemp, Log, TEXT("Ignored Damage due to Invincibility!"));
+		return; 
 	}
-    if (PlayerStats.CurrentHealth <= 0.0f)
+
+	PlayerStats.CurrentHealth += HealthAmount;
+    
+	PlayerStats.CurrentHealth = FMath::Clamp(PlayerStats.CurrentHealth, 0.0f, PlayerStats.MaxHealth);
+
+	if (HealthAmount < 0.0f)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("Ouch! HP Left: %f"), PlayerStats.CurrentHealth);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Log, TEXT("Healed! HP: %f"), PlayerStats.CurrentHealth);
+	}
+
+	if (PlayerStats.CurrentHealth <= 0.0f)
+	{
+		UE_LOG(LogTemp, Error, TEXT("PLAYER DIED!"));
 		bIsDead = true;
+        
 		if (APlayerController* PC = Cast<APlayerController>(Controller))
 		{
 			DisableInput(PC);
 		}
+        
 		OnDeath();
 	}
 }

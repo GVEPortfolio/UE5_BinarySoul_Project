@@ -69,17 +69,17 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float AttackPower = 10.0f;
 
-	// 2. 외형 (이게 중요합니다! 보스마다 생김새가 다르니까요)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	USkeletalMesh* SkeletalMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TSubclassOf<UAnimInstance> AnimClass; // 전용 애니메이션 블루프린트
+	TSubclassOf<UAnimInstance> AnimClass;
 
 	// 3. 몽타주 (피격, 사망 모션 등)
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UAnimMontage* AttackMontage;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAnimMontage* HitReactMontage;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UAnimMontage* DeathMontage;
 };

@@ -4,6 +4,7 @@
 #include "Engine/DataTable.h"
 #include "GameFramework/Character.h"
 #include "BinarySoul/BinarySoulTypes.h"
+#include "Components/BoxComponent.h"
 #include "BinaryTarget.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnHealthChangedSignature, float, CurrentHealth, float, MaxHealth);
@@ -31,21 +32,28 @@ public:
 	void InitializeEnemy(const FEnemyData& Data);
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 	virtual void BeginPlay() override;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	UAnimMontage* HitReactMontage;
+
 	UFUNCTION(BlueprintCallable, Category = "State")
 	bool IsDead() const { return bIsDead; }
-	// 사망 몽타주
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	UAnimMontage* HitReactMontage;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UAnimMontage* DeathMontage;
-	
-	void Attack();
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	UAnimMontage* AttackMontage;
-
+	void Attack();
+	
 	UFUNCTION()
 	void OnAttackMontageEnded(UAnimMontage* Montage, bool bInterrupted);
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetHitboxActive(FName TagName, bool bEnable);
 protected:
 	bool bIsDead= false;
+	
+	UFUNCTION()
+	void OnWeaponOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, 
+						 UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, 
+						 bool bFromSweep, const FHitResult& SweepResult);
 };
