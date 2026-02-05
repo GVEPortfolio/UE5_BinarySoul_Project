@@ -1,5 +1,23 @@
-[15464:2656:0124/153714.471:WARNING:chrome_main_delegate.cc(745)] This is Chrome version 128.0.6613.138 (not a warning)
-[15464:2656:0124/153714.578:WARNING:account_consistency_mode_manager.cc(77)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
-[15464:2656:0124/153717.573:WARNING:external_registry_loader_win.cc(232)] Error observing HKLM: 5
-[22500:14344:0124/153720.566:WARNING:frame_impl.cc(430)] virtual CefFrameImpl::SendProcessMessage sent to detached frame 5-37E334BEC7BBA943A2EFE3220A671EF2 will be ignored
-[15464:2656:0124/160335.016:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.
+[6620:28644:0205/170239.458:WARNING:chrome_main_delegate.cc(745)] This is Chrome version 128.0.6613.138 (not a warning)
+[6620:28644:0205/170239.563:ERROR:os_crypt_win.cc(100)] Failed to decrypt: 키를 지정된 상태에서 사용하기에 부적합합니다. (0x8009000B)
+[6620:17700:0205/170239.642:ERROR:google_update_settings.cc(265)] Failed opening key Software\Chromium to set usagestats; result: 5
+[6620:28644:0205/170239.711:WARNING:account_consistency_mode_manager.cc(77)] Desktop Identity Consistency cannot be enabled as no OAuth client ID and client secret have been configured.
+[6620:29508:0205/170243.500:WARNING:leveldb_database.cc(141)] Unable to open D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata: IO error: D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata/MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:29508:0205/170243.502:WARNING:leveldb_database.cc(141)] Unable to open D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata: IO error: D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata/MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:29508:0205/170243.503:WARNING:leveldb_database.cc(141)] Unable to open D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata: IO error: D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata/MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:29508:0205/170243.503:WARNING:leveldb_database.cc(141)] Unable to open D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata: IO error: D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\shared_proto_db\metadata/MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:29508:0205/170244.125:WARNING:value_store_frontend.cc(47)] Reading ahfgeienlihckogmohjhadlkjgocpleb.alarms from  failed: IO error: .../MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:29508:0205/170244.128:WARNING:value_store_frontend.cc(47)] Reading mhjfbmdgcfjbbpaeojofohoefgiehjai.alarms from  failed: IO error: .../MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[28036:24484:0205/170244.548:WARNING:frame_impl.cc(430)] virtual CefFrameImpl::SendProcessMessage sent to detached frame 5-A84F0F59E477D5B3A8E2070A6CD09DDE will be ignored
+[5392:30616:0205/170244.623:WARNING:backend_impl.cc(1764)] Destroying invalid entry.
+[5392:30616:0205/170245.059:ERROR:backend_impl.cc(989)] Critical error found -8
+[5392:30616:0205/170245.059:WARNING:storage_block-inl.h(138)] Failed data load.
+[5392:30616:0205/170245.059:WARNING:storage_block-inl.h(138)] Failed data load.
+[5392:30616:0205/170245.059:ERROR:entry_impl.cc(1029)] No file for b202002c
+[5392:30616:0205/170245.059:WARNING:storage_block-inl.h(138)] Failed data load.
+[5392:30616:0205/170245.232:WARNING:storage_block-inl.h(138)] Failed data load.
+[5392:30616:0205/170245.232:WARNING:storage_block-inl.h(138)] Failed data load.
+[5392:30616:0205/170245.233:WARNING:storage_block-inl.h(138)] Failed data load.
+[6620:5320:0205/170248.491:WARNING:leveldb_database.cc(141)] Unable to open D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\GCM Store\Encryption: IO error: D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\GCM Store\Encryption/MANIFEST-000001: Unable to create sequential file (ChromeMethodBFE: 7::NewSequentialFile::1)
+[6620:28884:0205/170249.035:ERROR:cast_crl.cc(443)] CRL - Verification failed.
+[6620:28644:0205/170657.389:WARNING:pref_notifier_impl.cc(41)] Pref observer for media_router.cast_allow_all_ips found at shutdown.

@@ -1,3 +1,2 @@
-2026/01/24-15:37:14.651 8a8c Reusing MANIFEST D:\UnrealProject\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\Local Storage\leveldb/MANIFEST-000001
-2026/01/24-15:37:14.662 8a8c Recovering log #3
-2026/01/24-15:37:14.664 8a8c Reusing old log D:\UnrealProject\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\Local Storage\leveldb/000003.log 
+2026/02/05-17:02:39.761 5d90 Creating DB D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\Local Storage\leveldb since it was missing.
+2026/02/05-17:02:39.787 5d90 Reusing MANIFEST D:\Projects\UE5_BinarySoul_Project\BinarySoul\Saved\webcache_6613\Default\Local Storage\leveldb/MANIFEST-000001

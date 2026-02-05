@@ -1,12 +1,12 @@
-"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Source/BinarySoul/BinarySoul.cpp"
-@"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.Shared.rsp"
-/FI"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h"
-/FI"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/Definitions.BinarySoul.h"
-/Yu"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h"
-/Fp"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h.pch"
-/Fo"D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.obj"
-/experimental:log "D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.sarif"
-/sourceDependencies "D:/UnrealProject/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.dep.json"
+"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Source/BinarySoul/BinarySoul.cpp"
+@"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.Shared.rsp"
+/FI"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h"
+/FI"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/Definitions.BinarySoul.h"
+/Yu"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h"
+/Fp"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/BinarySoulEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.InclOrderUnreal5_4.h.pch"
+/Fo"D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.obj"
+/experimental:log "D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.sarif"
+/sourceDependencies "D:/Projects/UE5_BinarySoul_Project/BinarySoul/Intermediate/Build/Win64/x64/UnrealEditor/Development/BinarySoul/BinarySoul.cpp.dep.json"
 /nologo
 /Oi
 /FC
