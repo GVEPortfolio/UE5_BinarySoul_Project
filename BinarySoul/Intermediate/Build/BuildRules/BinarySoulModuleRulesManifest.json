@@ -1,8 +1,0 @@
-{
-	"SourceFiles": [
-		"D:\\Projects\\UE5_BinarySoul_Project\\BinarySoul\\Source\\BinarySoul\\BinarySoul.Build.cs",
-		"D:\\Projects\\UE5_BinarySoul_Project\\BinarySoul\\Source\\BinarySoul.Target.cs",
-		"D:\\Projects\\UE5_BinarySoul_Project\\BinarySoul\\Source\\BinarySoulEditor.Target.cs"
-	],
-	"EngineVersion": "5.7.2"
-}
